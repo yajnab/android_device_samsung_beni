@@ -1,0 +1,2 @@
+CameraHAL for msmk7x27 board
+To build camera HAL you need to put stock GB libcamera.so to this directory
