@@ -34,4 +34,4 @@ PRODUCT_COPY_FILES += \
     device/samsung/beni/ramdisk/BENI.rle:root/BENI.rle
 
 ## LDPI assets
-PRODUCT_AAPT_PREF_CONFIG := ldpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
