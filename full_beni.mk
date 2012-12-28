@@ -22,7 +22,8 @@
 # Inherit device specific files
 $(call inherit-product, device/samsung/beni/device_beni.mk)
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/tiny.mk)
 
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := full_beni

@@ -32,6 +32,6 @@ BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/beni/recovery/graphics.c
 TARGET_RECOVERY_INITRC := device/samsung/beni/recovery/recovery.rc
 TARGET_RECOVERY_FSTAB := device/samsung/beni/recovery/recovery.fstab
 
-## Fonts and Bluetooth
 SMALLER_FONT_FOOTPRINT := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/beni/bluetooth
+

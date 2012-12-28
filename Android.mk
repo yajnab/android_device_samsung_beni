@@ -14,10 +14,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-# HACK for prebuilt libcamera
-$(shell mkdir -p $(OUT)/obj/SHARED_LIBRARIES/libcamera_intermediates)
-$(shell touch $(OUT)/obj/SHARED_LIBRARIES/libcamera_intermediates/export_includes)
-
 ifeq ($(TARGET_DEVICE),beni)
 include $(call all-makefiles-under,$(LOCAL_PATH))
 endif
