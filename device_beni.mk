@@ -18,12 +18,11 @@ $(call inherit-product, vendor/samsung/beni/vendor_blobs.mk)
 $(call inherit-product, vendor/google/gapps_armv6_tiny.mk)
 
 ## LDPI assets
-PRODUCT_AAPT_CONFIG := normal ldpi
+PRODUCT_AAPT_CONFIG := normal mdpi ldpi
 PRODUCT_AAPT_PREF_CONFIG := ldpi
 
 ## Inherit overlays
 $(call inherit-product, device/ldpi-common/ldpi.mk)
-
 DEVICE_PACKAGE_OVERLAYS += device/samsung/beni/overlay
 
 ## Wifi
