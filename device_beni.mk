@@ -12,19 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-## Inherit products
-$(call inherit-product, device/samsung/msm7x27-common/common.mk)
-$(call inherit-product, vendor/samsung/beni/vendor_blobs.mk)
-$(call inherit-product, vendor/google/gapps_armv6_tiny.mk)
-
-## LDPI assets
-PRODUCT_AAPT_CONFIG := normal mdpi ldpi
-PRODUCT_AAPT_PREF_CONFIG := ldpi
-
-## Inherit overlays
-$(call inherit-product, device/ldpi-common/ldpi.mk)
-DEVICE_PACKAGE_OVERLAYS += device/samsung/beni/overlay
-
 ## Wifi
 PRODUCT_PACKAGES += \
     abtfilt \
@@ -41,3 +28,16 @@ PRODUCT_COPY_FILES += \
     device/samsung/msm7x27-common/ramdisk/ueventd.msm7x27.rc:root/ueventd.gt-s5670board.rc \
     device/samsung/beni/ramdisk/BENI.rle:root/BENI.rle
 
+# Inherit products (Most specific first)
+# beni blobs > samsung common(device/vendor) > other blobs
+$(call inherit-product, vendor/samsung/beni/vendor_blobs.mk)
+$(call inherit-product, device/samsung/msm7x27-common/common.mk)
+$(call inherit-product, vendor/samsung/msm7x27-common/vendor.mk)
+
+## LDPI assets
+PRODUCT_AAPT_CONFIG := normal mdpi ldpi
+PRODUCT_AAPT_PREF_CONFIG := ldpi
+$(call inherit-product, device/ldpi-common/ldpi.mk)
+
+## Inherit overlays  (Most specific last)
+DEVICE_PACKAGE_OVERLAYS += device/samsung/beni/overlay
