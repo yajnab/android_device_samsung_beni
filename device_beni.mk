@@ -50,8 +50,7 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     brcm_patchram_plus \
     bdaddr_read \
-    setup_fs \
-    FileManager  
+    setup_fs    
 
 ## Vold config
 PRODUCT_COPY_FILES += \
@@ -127,6 +126,19 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/samsung/beni/prebuilt/lib/hw/gps.msm7x27.so:system/lib/hw/gps.msm7x27.so
 
+## Wifi
+PRODUCT_PACKAGES += \
+    abtfilt \
+    wlan_tool \
+    wmiconfig
+
+PRODUCT_PACKAGES += \
+    Torch
+
+## Ramdisk
+PRODUCT_COPY_FILES += \
+    device/samsung/beni/ramdisk/BENI.rle:root/BENI.rle
+    
 ## Other
 PRODUCT_LOCALES += en
 PRODUCT_AAPT_CONFIG := ldpi mdpi normal
@@ -147,9 +159,11 @@ PRODUCT_PACKAGES += \
    audio_policy.beni \
    audio.primary.beni
 
-## Ramdisk
+
+SAMSUNG_BOOTLOADER := $(shell echo $(PRODUCT_VERSION_DEVICE_SPECIFIC)board | tr '[A-Z]' '[a-z]' | cut -c 2-)
 PRODUCT_COPY_FILES += \
-    device/samsung/beni/ramdisk/init.gt-s5670board.rc:root/init.gt-s5670board.rc \
-    device/samsung/beni/ramdisk/init.gt-s5670board.usb.rc:root/init.gt-s5670board.usb.rc \
-    device/samsung/beni/ramdisk/ueventd.gt-s5670board.rc:root/ueventd.gt-s5670board.rc \
-    device/samsung/beni/ramdisk/BENI.rle:root/BENI.rle
+    device/samsung/beni/ramdisk/init.msm7x27.rc:root/init.$(SAMSUNG_BOOTLOADER).rc \
+    device/samsung/beni/ramdisk/init.msm7x27.bluez.rc:root/init.$(SAMSUNG_BOOTLOADER).bluez.rc \
+    device/samsung/beni/ramdisk/init.msm7x27.parts.rc:root/init.$(SAMSUNG_BOOTLOADER).parts.rc \
+    device/samsung/beni/ramdisk/init.msm7x27.usb.rc:root/init.$(SAMSUNG_BOOTLOADER).usb.rc \
+    device/samsung/beni/ramdisk/ueventd.msm7x27.rc:root/ueventd.$(SAMSUNG_BOOTLOADER).rc
