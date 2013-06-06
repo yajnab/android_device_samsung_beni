@@ -72,7 +72,7 @@ COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DREFRESH_RATE=60
 COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK -DBINDER_COMPAT
 COMMON_GLOBAL_CFLAGS += -DMISSING_GRALLOC_BUFFERS
 COMMON_GLOBAL_CFLAGS += -DFORCE_CPU_UPLOAD -DQCOM_ICS_COMPAT
-COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_PIXEL_FORMAT_YV12 -DMISSING_EGL_EXTERNAL_IMAGE
+BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
 
 ## GPS
 BOARD_USES_QCOM_GPS := true
@@ -90,28 +90,68 @@ BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO -DQCOM_FM_ENABLED
 BOARD_FM_DEVICE := brcm2049
 
 ## Wi-Fi
-COMMON_GLOBAL_CFLAGS += -DWIFI_AP_HAS_OWN_DRIVER
-BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-WPA_SUPPLICANT_VERSION := VER_0_8_X
-BOARD_WLAN_DEVICE := ath6kl
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
 BOARD_WLAN_NO_FWRELOAD := true
-WIFI_AP_DRIVER_MODULE_ARG := "ifname=athap0 fwmode=2"
-WIFI_AP_DRIVER_MODULE_PATH := /system/wifi/ar6000.ko
-WIFI_AP_DRIVER_MODULE_NAME := ar6000
+COMMON_GLOBAL_CFLAGS += -DWIFI_AP_HAS_OWN_DRIVER
 WIFI_AP_FIRMWARE_LOADER := ""
+WPA_SUPPLICANT_VERSION := VER_0_8_X
 
-WIFI_DRIVER_MODULE_ARG := "ifname=wlan0 fwmode=1"
-WIFI_DRIVER_MODULE_PATH := /system/wifi/ar6000.ko
-WIFI_DRIVER_MODULE_NAME := ar6000
-BOARD_HAVE_SAMSUNG_WIFI := true
+ifeq ($(BOARD_WLAN_DEVICE),ath6kl_compat)
+	# This is unnecessary, and breaks WIFI_EXT_MODULE_*
+	BOARD_HAVE_SAMSUNG_WIFI := false
 
-BOARD_WLAN_CHIP_AR6003  := true
-BOARD_WLAN_ATHEROS_SDK  := AR6kSDK.3.1/AR6kSDK.build_3.1_RC.563
+	# ATH6KL uses NL80211 driver
+	BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+	BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_ath6kl_compat
 
-## Wi-Fi Hotspot
-BOARD_HAVE_LEGACY_HOSTAPD := true
-BOARD_HOSTAPD_NO_ENTROPY := true
+	# ATH6KL uses hostapd built from source
+	BOARD_HOSTAPD_DRIVER := NL80211
+	BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_ath6kl_compat
+
+	# Common module dependency
+	WIFI_EXT_MODULE_NAME := cfg80211
+	WIFI_EXT_MODULE_PATH := /system/lib/modules/cfg80211.ko
+
+	# AP mode
+	WIFI_AP_DRIVER_MODULE_ARG := "suspend_mode=3 wow_mode=2 ath6kl_p2p=1 recovery_enable=1 samsung_firmware=0"
+	WIFI_AP_DRIVER_MODULE_NAME := ath6kl
+	WIFI_AP_DRIVER_MODULE_PATH := /system/lib/modules/ath6kl.ko
+
+	# Station/client mode
+	WIFI_DRIVER_MODULE_ARG := "suspend_mode=3 wow_mode=2 ath6kl_p2p=1 recovery_enable=1 samsung_firmware=1"
+	WIFI_DRIVER_MODULE_NAME := ath6kl
+	WIFI_DRIVER_MODULE_PATH := /system/lib/modules/ath6kl.ko
+
+	# Build the ath6kl-compat modules
+KERNEL_EXTERNAL_MODULES:
+	# wipe & prepare ath6kl-compat working directory
+	rm -rf $(OUT)/ath6kl-compat
+	cp -a hardware/atheros/ath6kl-compat $(OUT)/
+	# run build
+	$(MAKE) -C $(OUT)/ath6kl-compat KERNEL_DIR=$(KERNEL_OUT) KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) ARCH=$(TARGET_ARCH) $(ARM_CROSS_COMPILE)
+	# copy & strip modules (to economize space)
+	$(TARGET_OBJCOPY) --strip-unneeded $(OUT)/ath6kl-compat/compat/compat.ko $(KERNEL_MODULES_OUT)/compat.ko
+	$(TARGET_OBJCOPY) --strip-unneeded $(OUT)/ath6kl-compat/drivers/net/wireless/ath/ath6kl/ath6kl.ko $(KERNEL_MODULES_OUT)/ath6kl.ko
+	$(TARGET_OBJCOPY) --strip-unneeded $(OUT)/ath6kl-compat/net/wireless/cfg80211.ko $(KERNEL_MODULES_OUT)/cfg80211.ko
+TARGET_KERNEL_MODULES := KERNEL_EXTERNAL_MODULES
+else
+	# Enhance Samsung AR6000 compatibility
+	BOARD_HAVE_SAMSUNG_WIFI := true
+
+	# AR6000 SDK 3.x uses WEXT driver
+	BOARD_WLAN_DEVICE := ath6kl
+	BOARD_WPA_SUPPLICANT_DRIVER := WEXT
+	BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
+
+	# AP mode
+	WIFI_AP_DRIVER_MODULE_ARG := "ifname=athap0 fwmode=2"
+	WIFI_AP_DRIVER_MODULE_PATH := /system/wifi/ar6000.ko
+	WIFI_AP_DRIVER_MODULE_NAME := ar6000
+
+	# Station/client mode
+	WIFI_DRIVER_MODULE_ARG := "ifname=wlan0 fwmode=1"
+	WIFI_DRIVER_MODULE_PATH := /system/wifi/ar6000.ko
+	WIFI_DRIVER_MODULE_NAME := ar6000
+endif
 
 ## RIL
 TARGET_PROVIDES_LIBRIL := true
@@ -120,8 +160,8 @@ BOARD_FORCE_RILD_AS_ROOT := true
 BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
 
 ## UMS
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
-BOARD_UMS_LUNFILE := "/sys/devices/platform/usb_mass_storage/lun0/file"
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0/file
+BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 ## Legacy touchscreen support
 BOARD_USE_LEGACY_TOUCHSCREEN := true
@@ -149,7 +189,7 @@ BOARD_HAS_DOWNLOAD_MODE := true
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 229938816
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 249938816
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 190054400
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_KERNEL_CMDLINE := 
