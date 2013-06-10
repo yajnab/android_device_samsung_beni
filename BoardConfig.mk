@@ -77,6 +77,10 @@ BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 ## Legacy touchscreen support
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
+## Camera
+USE_CAMERA_STUB := false
+BOARD_USE_NASTY_PTHREAD_CREATE_HACK := true
+TARGET_DISABLE_ARM_PIE := true
 
 ## Kernel, bootloader
 TARGET_BOOTLOADER_BOARD_NAME := beni
