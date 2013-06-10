@@ -16,6 +16,16 @@
 #
 # Product-specific compile-time definitions.
 #
+# Target
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv6-vfp
+TARGET_BOARD_PLATFORM := msm7x27
+TARGET_CPU_ABI := armeabi-v6l
+TARGET_CPU_ABI2 := armeabi
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+COMMON_GLOBAL_CFLAGS += -DTARGET_MSM7x27
+
 ## Kernel, bootloader
 TARGET_BOOTLOADER_BOARD_NAME := beni
 TARGET_KERNEL_CONFIG := cyanogenmod_beni_defconfig
