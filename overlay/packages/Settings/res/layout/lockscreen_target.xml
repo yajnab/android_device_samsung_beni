@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+
+  xmlns:prvandroid="http://schemas.android.com/apk/prv/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+
+
+
+    <TextView
+    android:textAppearance="?android:textAppearanceSmall"
+    android:textColor="#ffffffff"
+    android:gravity="center_horizontal"
+    android:background="@*android:color/holo_blue_light"
+    android:padding="4.0dip"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8.0dip"
+    android:layout_marginRight="8.0dip"
+    android:text="@string/lockscreen_target_info" />
+
+
+    <View android:layout_width="fill_parent"
+    android:layout_height="0.0dip"
+    android:layout_weight="0.4" />
+
+
+    <com.android.internal.widget.multiwaveview.GlowPadView
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:id="@id/lock_target"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.6"
+    prvandroid:innerRadius="@*android:dimen/preference_screen_bottom_margin"
+    android:contentDescription="@*android:string/lockscreen_glogin_username_hint"
+    prvandroid:targetDescriptions="@*android:array/shutdown_reboot_options"
+    prvandroid:directionDescriptions="@*android:array/lockscreen_direction_descriptions"
+    prvandroid:outerRingDrawable="@*android:drawable/ic_lockscreen_podcast_activated"
+    prvandroid:pointDrawable="@*android:drawable/ic_lockscreen_google_small_activated"
+    prvandroid:glowRadius="@*android:dimen/preference_screen_side_margin_negative"
+    prvandroid:firstItemOffset="@17694790"
+    prvandroid:magneticTargets="false"
+    prvandroid:allowScaling="true"
+    prvandroid:targetDrawables="@*android:array/lockscreen_chevron_drawables"
+    prvandroid:handleDrawable="@*android:drawable/ic_lockscreen_lock_normal"
+    prvandroid:outerRadius="@*android:dimen/preference_screen_side_margin"
+    prvandroid:vibrationDuration="20"
+    prvandroid:snapMargin="@*android:dimen/preference_screen_top_margin"
+    prvandroid:feedbackCount="1" />
+
+</LinearLayout>
