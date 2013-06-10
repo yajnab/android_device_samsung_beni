@@ -47,6 +47,13 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     brcm_patchram_plus \
     setup_fs
+    
+# Media
+PRODUCT_PACKAGES += \
+    libstagefrighthw \
+    libmm-omxcore \
+    libOmxCore
+
 
 ## LDPI assets
 PRODUCT_AAPT_CONFIG := normal mdpi ldpi
