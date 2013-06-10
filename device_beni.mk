@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+
 # Display
 PRODUCT_PACKAGES += \
     libgenlock \
@@ -19,6 +21,13 @@ PRODUCT_PACKAGES += \
     libqdutils \
     gralloc.msm7x27 \
     copybit.msm7x27
+    
+# Audio
+PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    libaudioutils \
+    audio_policy.msm7x27 \
+    audio.primary.msm7x27
 
 ## LDPI assets
 PRODUCT_AAPT_CONFIG := normal mdpi ldpi
