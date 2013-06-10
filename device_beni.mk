@@ -12,6 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
+## LDPI assets
+PRODUCT_AAPT_CONFIG := normal mdpi ldpi
+PRODUCT_AAPT_PREF_CONFIG := ldpi
+
+## Inherit overlays  (Most specific last)
+DEVICE_PACKAGE_OVERLAYS += device/samsung/beni/overlay
+
+
 SAMSUNG_BOOTLOADER := $(shell echo $(PRODUCT_VERSION_DEVICE_SPECIFIC)board | tr '[A-Z]' '[a-z]' | cut -c 2-)
 PRODUCT_COPY_FILES += \
     device/samsung/beni/ramdisk/BENI.rle:root/BENI.rle
