@@ -56,6 +56,13 @@ TARGET_SPECIFIC_HEADER_PATH := device/samsung/msm7x27-common/include
 ENABLE_WEBGL := true
 TARGET_WEBKIT_USE_MORE_MEMORY := true
 
+## Device specific libs
+TARGET_PROVIDES_LIBAUDIO := true
+TARGET_PROVIDES_LIBLIGHT := true
+
+## Audio: combo device supported
+BOARD_COMBO_DEVICE_SUPPORTED := true
+
 # Javascript, Browser and Webkit
 WITH_JIT := true
 ENABLE_JSC_JIT := true
