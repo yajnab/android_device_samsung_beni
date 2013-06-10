@@ -108,7 +108,7 @@ BOARD_HAVE_SAMSUNG_BLUETOOTH := true
 ifneq (true,$(BOARD_HAVE_BLUETOOTH_BLUEZ))
 BOARD_HAVE_BLUETOOTH := true
 endif
-
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/beni/bluetooth
 ## Kernel, bootloader
 TARGET_BOOTLOADER_BOARD_NAME := beni
 TARGET_KERNEL_CONFIG := cyanogenmod_beni_defconfig
