@@ -33,6 +33,20 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     camera.msm7x27 \
     libcamera
+    
+## GPS
+PRODUCT_PACKAGES += \
+    gps.msm7x27 \
+    librpc
+
+
+## Other
+PRODUCT_PACKAGES += \
+    lights.msm7x27 \
+    power.msm7x27 \
+    make_ext4fs \
+    brcm_patchram_plus \
+    setup_fs
 
 ## LDPI assets
 PRODUCT_AAPT_CONFIG := normal mdpi ldpi
