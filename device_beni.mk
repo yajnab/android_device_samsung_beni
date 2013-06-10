@@ -86,6 +86,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Camcorder
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.camcorder.disablemeta=1
+    
+# FM Radio
+PRODUCT_PACKAGES += \
+    Effem \
+    libfmradio.bcm2049
 
 # BlueZ: binaries
 PRODUCT_PACKAGES += \
