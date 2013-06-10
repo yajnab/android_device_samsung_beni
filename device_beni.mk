@@ -164,6 +164,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/samsung/msm7x27-common/prebuilt/etc/gps.conf:system/etc/gps.conf
     
+# Inherit products (Most specific first)
+# beni blobs > samsung common(device/vendor) > other blobs
+$(call inherit-product, vendor/samsung/beni/vendor_blobs.mk)
+$(call inherit-product, device/samsung/msm7x27-common/common.mk)
+$(call inherit-product, vendor/samsung/msm7x27-common/vendor.mk)
+
 
 SAMSUNG_BOOTLOADER := $(shell echo $(PRODUCT_VERSION_DEVICE_SPECIFIC)board | tr '[A-Z]' '[a-z]' | cut -c 2-)
 PRODUCT_COPY_FILES += \
