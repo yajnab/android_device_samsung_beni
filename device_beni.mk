@@ -62,6 +62,32 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     Torch
+# Graphics
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opengles.version=131072 \
+    ro.opengles.surface.rgb565=true \
+    com.qc.hardware=true \
+    debug.enabletr=false \
+    debug.hwui.render_dirty_regions=false \
+    debug.qctwa.statusbar=1 \
+    debug.qctwa.preservebuf=1 \
+    hwui.print_config=choice \
+    persist.sys.strictmode.visual=false
+
+# Stagefright
+PRODUCT_PROPERTY_OVERRIDES += \
+    media.stagefright.enable-player=true \
+    media.stagefright.enable-meta=false \
+    media.stagefright.enable-scan=false \
+    media.stagefright.enable-http=true \
+    media.stagefright.enable-aac=true \
+    media.stagefright.enable-qcp=true
+
+# Camcorder
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.camcorder.disablemeta=1
+    
+    
 
 ## LDPI assets
 PRODUCT_AAPT_CONFIG := normal mdpi ldpi
