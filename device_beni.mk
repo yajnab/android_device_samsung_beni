@@ -29,6 +29,11 @@ PRODUCT_PACKAGES += \
     audio_policy.msm7x27 \
     audio.primary.msm7x27
 
+## Camera
+PRODUCT_PACKAGES += \
+    camera.msm7x27 \
+    libcamera
+
 ## LDPI assets
 PRODUCT_AAPT_CONFIG := normal mdpi ldpi
 PRODUCT_AAPT_PREF_CONFIG := ldpi

@@ -17,3 +17,11 @@ LOCAL_PATH := $(call my-dir)
 ifeq ($(TARGET_DEVICE),beni)
 include $(call all-makefiles-under,$(LOCAL_PATH))
 endif
+ifeq ($(PRODUCT_MANUFACTURER),Samsung)
+
+# HACK for prebuilt libcamera
+$(shell mkdir -p $(OUT)/obj/SHARED_LIBRARIES/libcamera_intermediates)
+$(shell touch $(OUT)/obj/SHARED_LIBRARIES/libcamera_intermediates/export_includes)
+
+include $(all-subdir-makefiles)
+endif
