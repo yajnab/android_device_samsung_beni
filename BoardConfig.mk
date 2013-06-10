@@ -48,6 +48,8 @@ BOARD_EGL_NEEDS_LEGACY_FB := true
 TARGET_GLOBAL_CPPFLAGS += -mfpu=vfp -mfloat-abi=softfp -Os
 TARGET_DISABLE_TRIPLE_BUFFERING := true
 
+## Samsung has weird framebuffer
+TARGET_NO_INITLOGO := true
 
 ## Platform
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
