@@ -11,7 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+# Display
+PRODUCT_PACKAGES += \
+    libgenlock \
+    libmemalloc \
+    liboverlay \
+    libqdutils \
+    gralloc.msm7x27 \
+    copybit.msm7x27
 
 ## LDPI assets
 PRODUCT_AAPT_CONFIG := normal mdpi ldpi
