@@ -101,6 +101,13 @@ BOARD_FORCE_RILD_AS_ROOT := true
 BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
 BOARD_RIL_CLASS := ../../../device/samsung/beni/ril/
 
+## Bluetooth
+BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_HAVE_BLUETOOTH_BLUEZ := true
+BOARD_HAVE_SAMSUNG_BLUETOOTH := true
+ifneq (true,$(BOARD_HAVE_BLUETOOTH_BLUEZ))
+BOARD_HAVE_BLUETOOTH := true
+endif
 
 ## Kernel, bootloader
 TARGET_BOOTLOADER_BOARD_NAME := beni
