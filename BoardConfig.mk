@@ -215,6 +215,7 @@ BOARD_RECOVERY_HANDLES_MOUNT := true
 
 
 
-
+## Fix colors in panorama mode
+BOARD_CPU_COLOR_CONVERT := true
 
 
