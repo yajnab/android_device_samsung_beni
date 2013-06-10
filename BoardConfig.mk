@@ -71,6 +71,8 @@ JS_ENGINE := v8
 HTTP := chrome
 TARGET_FORCE_CPU_UPLOAD := true
 
+SMALLER_FONT_FOOTPRINT := true
+
 ## UMS
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0/file
 BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
