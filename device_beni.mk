@@ -52,7 +52,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libstagefrighthw \
     libmm-omxcore \
-    libOmxCore
+    libOmxCore   
 
 ## Wifi
 PRODUCT_PACKAGES += \
@@ -172,6 +172,12 @@ $(call inherit-product, vendor/samsung/msm7x27-common/vendor.mk)
 
 # Install/Uninstall google apps
 $(call inherit-product, vendor/google/gapps_armv6_tiny.mk)
+
+## Loop ringtone
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.call_ring.multiple=false \
+    ro.telephony.call_ring.delay=3000
+    
 
 SAMSUNG_BOOTLOADER := $(shell echo $(PRODUCT_VERSION_DEVICE_SPECIFIC)board | tr '[A-Z]' '[a-z]' | cut -c 2-)
 PRODUCT_COPY_FILES += \
