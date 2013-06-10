@@ -54,6 +54,14 @@ PRODUCT_PACKAGES += \
     libmm-omxcore \
     libOmxCore
 
+## Wifi
+PRODUCT_PACKAGES += \
+    abtfilt \
+    wlan_tool \
+    wmiconfig
+
+PRODUCT_PACKAGES += \
+    Torch
 
 ## LDPI assets
 PRODUCT_AAPT_CONFIG := normal mdpi ldpi
