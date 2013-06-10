@@ -46,6 +46,7 @@ COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_QCOM
 COMMON_GLOBAL_CFLAGS += -DBINDER_COMPAT
 BOARD_EGL_NEEDS_LEGACY_FB := true
 TARGET_GLOBAL_CPPFLAGS += -mfpu=vfp -mfloat-abi=softfp -Os
+TARGET_DISABLE_TRIPLE_BUFFERING := true
 
 
 ## Platform
@@ -109,6 +110,7 @@ ifneq (true,$(BOARD_HAVE_BLUETOOTH_BLUEZ))
 BOARD_HAVE_BLUETOOTH := true
 endif
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/beni/bluetooth
+
 ## Kernel, bootloader
 TARGET_BOOTLOADER_BOARD_NAME := beni
 TARGET_KERNEL_CONFIG := cyanogenmod_beni_defconfig
