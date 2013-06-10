@@ -86,7 +86,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Camcorder
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.camcorder.disablemeta=1
-    
+
+# BlueZ: binaries
+PRODUCT_PACKAGES += \
+    bluetoothd \
+    libbluetoothd \
+    hcitool \
+    hciconfig \
+    hciattach \
+    brcm_patchram_plus    
     
 
 ## LDPI assets
