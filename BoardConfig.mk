@@ -47,6 +47,24 @@ COMMON_GLOBAL_CFLAGS += -DBINDER_COMPAT
 BOARD_EGL_NEEDS_LEGACY_FB := true
 TARGET_GLOBAL_CPPFLAGS += -mfpu=vfp -mfloat-abi=softfp -Os
 
+
+## Platform
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/msm7x27-common/include
+
+## Webkit
+ENABLE_WEBGL := true
+TARGET_WEBKIT_USE_MORE_MEMORY := true
+
+# Javascript, Browser and Webkit
+WITH_JIT := true
+ENABLE_JSC_JIT := true
+JS_ENGINE := v8
+HTTP := chrome
+TARGET_FORCE_CPU_UPLOAD := true
+
+
+
 ## Kernel, bootloader
 TARGET_BOOTLOADER_BOARD_NAME := beni
 TARGET_KERNEL_CONFIG := cyanogenmod_beni_defconfig
