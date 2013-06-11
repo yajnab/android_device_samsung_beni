@@ -167,7 +167,6 @@ PRODUCT_COPY_FILES += \
 # Inherit products (Most specific first)
 # beni blobs > samsung common(device/vendor) > other blobs
 $(call inherit-product, vendor/samsung/beni/vendor_blobs.mk)
-$(call inherit-product, device/samsung/msm7x27-common/common.mk)
 $(call inherit-product, vendor/samsung/msm7x27-common/vendor.mk)
 
 # Install/Uninstall google apps
