@@ -53,7 +53,7 @@ TARGET_NO_INITLOGO := true
 
 ## Platform
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
-TARGET_SPECIFIC_HEADER_PATH := device/samsung/msm7x27-common/include
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/beni/include
 
 ## Webkit
 ENABLE_WEBGL := true
