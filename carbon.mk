@@ -9,7 +9,7 @@ $(call inherit-product, vendor/liquid/config/common_phone.mk)
 
 
 # Overrides
-PRODUCT_NAME := liquid_beni
+PRODUCT_NAME := carbon_beni
 PRODUCT_DEVICE := beni
 PRODUCT_BRAND := Samsung
 PRODUCT_MODEL := GT-S5670
