@@ -2,10 +2,10 @@
 $(call inherit-product, device/samsung/beni/full_beni.mk)
 
 # gsm
-$(call inherit-product, vendor/liquid/config/common_gsm.mk)
+$(call inherit-product, vendor/carbon/config/common_gsm.mk)
 
 # phone
-$(call inherit-product, vendor/liquid/config/common_phone.mk)
+$(call inherit-product, vendor/carbon/config/common_phone.mk)
 
 
 # Overrides
