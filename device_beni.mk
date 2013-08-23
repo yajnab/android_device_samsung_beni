@@ -22,8 +22,16 @@ PRODUCT_PACKAGES += \
     Torch
 
 ## Ramdisk
+SAMSUNG_BOOTLOADER := $(shell echo $(PRODUCT_VERSION_DEVICE_SPECIFIC)board | tr '[A-Z]' '[a-z]' | cut -c 2-)
+ 
+PRODUCT_PACKAGES += \
+    fstab.$(SAMSUNG_BOOTLOADER) \
+    init.$(SAMSUNG_BOOTLOADER).rc 
+
 PRODUCT_COPY_FILES += \
-    device/samsung/beni/ramdisk/BENI.rle:root/BENI.rle
+    device/samsung/beni/ramdisk/BENI.rle:root/BENI.rle 
+    
+    
 
 # Inherit products (Most specific first)
 # beni blobs > samsung common(device/vendor) > other blobs
