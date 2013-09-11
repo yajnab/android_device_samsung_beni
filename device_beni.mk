@@ -26,7 +26,8 @@ SAMSUNG_BOOTLOADER := $(shell echo $(PRODUCT_VERSION_DEVICE_SPECIFIC)board | tr 
  
     
 PRODUCT_COPY_FILES += \
-    device/samsung/beni/ramdisk/BENI.rle:root/BENI.rle 
+    device/samsung/beni/ramdisk/BENI.rle:root/BENI.rle \
+    device/samsung/tass/ramdisk/init.msm7x27.rc:root/init.gt-s5670board.rc
     
     
 
