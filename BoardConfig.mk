@@ -33,7 +33,6 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := "<font_7x16.h>"
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/beni/recovery/recovery_ui.c
 BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/beni/recovery/graphics.c
 TARGET_RECOVERY_INITRC := device/samsung/beni/recovery/recovery.rc
-TARGET_RECOVERY_FSTAB := device/samsung/beni/recovery/fstab.gt-s5670board
 RECOVERY_FSTAB_VERSION := 2
 
 SMALLER_FONT_FOOTPRINT := true
